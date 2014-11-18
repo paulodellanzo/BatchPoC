@@ -1,5 +1,7 @@
 package batchpoc.model;
 
+import com.google.common.base.Objects;
+
 /**
  * Created by pbergonzi on 13/11/14.
  */
@@ -550,8 +552,11 @@ public class ItemCSV {
 		return this.columna50;
 	}
 
-	public void setColumna50(String columna50)
-	{
-		this.columna50 = columna50;
-	}
+	public void setColumna50(String columna50) { this.columna50 = columna50; }
+
+    @Override
+    public int hashCode(){
+        return Objects.hashCode(columna01, columna02, columna03,columna04,columna05,columna06,columna07,columna08,columna09,columna10);
+    }
+
 }

@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import batchpoc.dao.ReaderDao;
 import batchpoc.dao.ReaderDaoImpl;
+import batchpoc.services.BagService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -17,12 +18,12 @@ public class ServicesConfiguration {
         return new ReaderDaoImpl();
     }
 
-    /*
-    @Bean
-    public SyndFeedService syndFeedService(){
-        return new SyndFeedServiceImpl();
-    }
 
+    @Bean
+    public BagService BagService(){
+        return new BagService();
+    }
+/*
     @Bean
     public PodcastAndEpisodeAttributesService podcastAndEpisodeAttributesService(){
         return new PodcastAndEpisodeAttributesServiceImpl();

@@ -36,10 +36,21 @@ public class InterfaceJobConfiguration {
     private StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job addNewPodcastJob(){
+    public Job interfaceJob(){
         return jobs.get("interfaceJob")
                 .listener(protocolListener())
                 .start(step())
+                .build();
+    }
+
+    @Bean
+    public Step step2(){
+        return stepBuilderFactory.get("step2")
+                .<ItemCSV,ETransaction>chunk(1)
+                .writer(writer2())
+                .faultTolerant()
+                .skipLimit(0)
+                .skip(Exception.class)
                 .build();
     }
 
@@ -113,6 +124,11 @@ public class InterfaceJobConfiguration {
     @Bean
     public ItemWriter<ETransaction> writer() {
         return new Writer();
+    }
+
+    @Bean
+    public ItemWriter<ETransaction> writer2() {
+        return new Writer2();
     }
 
     @Bean
