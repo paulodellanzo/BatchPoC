@@ -39,19 +39,18 @@ public class InfrastructureConfiguration {
     Properties additionalJpaProperties() {
         Properties properties = new Properties();
 //		  properties.setProperty("hibernate.hbm2ddl.auto", "validate");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
         properties.setProperty("hibernate.show_sql", "true");
-
         return properties;
     }
 
     @Bean
     public DataSource dataSource(){
         return DataSourceBuilder.create()
-                .url(env.getProperty("db.url"))
-                .driverClassName(env.getProperty("db.driver"))
-                .username(env.getProperty("db.username"))
-                .password(env.getProperty("db.password"))
+                .url("jdbc:oracle:thin:@dbdv02:1521:egdev")
+                .driverClassName("oracle.jdbc.OracleDriver")
+                .username("esigas_ypf")
+                .password("esigas")
                 .build();
     }
 

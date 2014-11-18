@@ -3,11 +3,13 @@ package batchpoc.jobs;
 import batchpoc.common.configuration.InfrastructureConfiguration;
 import batchpoc.model.ETransaction;
 import batchpoc.model.ItemCSV;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -48,7 +50,6 @@ public class InterfaceJobConfiguration {
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())
-                .listener(logProcessListener())
                 .faultTolerant()
                 .skipLimit(0) //default is set to 0
                 .skip(Exception.class)
@@ -61,6 +62,13 @@ public class InterfaceJobConfiguration {
         reader.setLinesToSkip(1);//first line is title definition
         reader.setResource(new ClassPathResource("suggested-podcasts.in"));
         reader.setLineMapper(lineMapper());
+        reader.open(new ExecutionContext());
+//        try {
+//			ItemCSV item = reader.read();
+//			System.out.println(item.getColumna01());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
         return reader;
     }
 
@@ -69,9 +77,18 @@ public class InterfaceJobConfiguration {
         DefaultLineMapper<ItemCSV> lineMapper = new DefaultLineMapper<>();
 
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
-        lineTokenizer.setDelimiter(",");
+        lineTokenizer.setDelimiter(";");
         lineTokenizer.setStrict(false);
-        lineTokenizer.setNames(new String[]{"FEED_URL", "IDENTIFIER_ON_PODCASTPEDIA", "CATEGORIES", "LANGUAGE", "MEDIA_TYPE", "UPDATE_FREQUENCY", "KEYWORDS", "FB_PAGE", "TWITTER_PAGE", "GPLUS_PAGE", "NAME_SUBMITTER", "EMAIL_SUBMITTER"});
+        lineTokenizer.setNames(new String[]{"columna01", 
+        		"columna02", 
+        		"columna03",
+        		"columna04",
+        		"columna05",
+        		"columna06",
+        		"columna07",
+        		"columna08",
+        		"columna09"
+        		});
 
         BeanWrapperFieldSetMapper<ItemCSV> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(ItemCSV.class);
@@ -103,8 +120,4 @@ public class InterfaceJobConfiguration {
         return new ProtocolListener();
     }
 
-    @Bean
-    public LogProcessListener logProcessListener(){
-        return new LogProcessListener();
-    }
 }
