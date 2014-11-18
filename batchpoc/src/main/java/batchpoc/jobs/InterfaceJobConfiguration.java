@@ -1,6 +1,7 @@
 package batchpoc.jobs;
 
 import batchpoc.common.configuration.InfrastructureConfiguration;
+import batchpoc.model.AjusteImpl;
 import batchpoc.model.ETransaction;
 import batchpoc.model.ItemCSV;
 
@@ -43,21 +44,11 @@ public class InterfaceJobConfiguration {
                 .build();
     }
 
-//    @Bean
-//    public Step step2(){
-//        return stepBuilderFactory.get("step2")
-//                .<ItemCSV,ETransaction>chunk(1)
-//                .writer(writer2())
-//                .faultTolerant()
-//                .skipLimit(0)
-//                .skip(Exception.class)
-//                .build();
-//    }
 
     @Bean
     public Step step(){
         return stepBuilderFactory.get("step")
-                .<ItemCSV,ETransaction>chunk(1) //important to be one in this case to commit after every line read
+                .<ItemCSV,AjusteImpl>chunk(1) //important to be one in this case to commit after every line read
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())
@@ -112,18 +103,13 @@ public class InterfaceJobConfiguration {
 
     /** configure the processor related stuff */
     @Bean
-    public ItemProcessor<ItemCSV, ETransaction> processor() {
+    public ItemProcessor<ItemCSV, AjusteImpl> processor() {
         return new ItemCSVProcessor();
     }
 
     @Bean
-    public ItemWriter<ETransaction> writer() {
+    public ItemWriter<AjusteImpl> writer() {
         return new Writer();
-    }
-
-    @Bean
-    public ItemWriter<ETransaction> writer2() {
-        return new Writer2();
     }
 
     @Bean

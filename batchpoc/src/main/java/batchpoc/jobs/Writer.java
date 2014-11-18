@@ -5,13 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import batchpoc.dao.WriterDao;
+import batchpoc.model.AjusteImpl;
 import batchpoc.model.ETransaction;
 import batchpoc.services.BagService;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class Writer implements ItemWriter<ETransaction>{
+public class Writer implements ItemWriter<AjusteImpl>{
 
     @Autowired
     private EntityManager entityManager;//aca va el dao
@@ -23,28 +24,14 @@ public class Writer implements ItemWriter<ETransaction>{
     private WriterDao writerDao;
 
     @Override
-    public void write(List<? extends ETransaction> items) throws Exception {
-    	for (ETransaction etrans : items)
+    public void write(List<? extends AjusteImpl> items) throws Exception {
+    	for (AjusteImpl ajuste : items)
     	{
-            if(!this.bagService.contains(etrans)){
+            if(!this.bagService.contains(ajuste)){
                 //escribo
-                this.bagService.add(etrans);
+                this.writerDao.saveAjuste(ajuste);
+                this.bagService.add(ajuste);
             }
-//            InterfazCorridaTemporal interfazCorridaTemporal = new InterfazCorridaTemporalImpl();
-//            interfazCorridaTemporal.setColumna01(etrans.getItemCSV().getColumna01());
-//            interfazCorridaTemporal.setColumna02(etrans.getItemCSV().getColumna02());
-//            interfazCorridaTemporal.setColumna03(etrans.getItemCSV().getColumna03());
-            
-            
-    		/*System.out.println(etrans.getItemCSV().getColumna01());
-    		System.out.println(etrans.getItemCSV().getColumna02());
-    		System.out.println(etrans.getItemCSV().getColumna03());
-    		System.out.println(etrans.getItemCSV().getColumna04());
-    		System.out.println(etrans.getItemCSV().getColumna05());
-    		System.out.println(etrans.getItemCSV().getColumna06());
-    		System.out.println(etrans.getItemCSV().getColumna07());
-    		System.out.println(etrans.getItemCSV().getColumna08());
-    		System.out.println(etrans.getItemCSV().getColumna09());*/
     		
     	}
     }

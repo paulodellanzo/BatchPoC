@@ -1,6 +1,9 @@
 package batchpoc;
 
 import java.util.Date;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,7 +33,6 @@ public class Application {
     private static final String INTERFACE_JOB = "interfaceJob";
 
     public static void main(String[] args) throws BeansException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException {
-
         Log log = LogFactory.getLog(Application.class);
 
         SpringApplication app = new SpringApplication(Application.class);

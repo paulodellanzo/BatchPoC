@@ -1,25 +1,22 @@
 package batchpoc.services;
 
+import batchpoc.model.AjusteImpl;
 import batchpoc.model.ETransaction;
 
 import java.util.*;
 
 public class BagService {
-    private Map<String,ETransaction> map = new HashMap<>();
+    private Map<String,AjusteImpl> map = new HashMap<>();
 
-    public void add(ETransaction eTransaction){
-        map.put(Integer.toString(eTransaction.getItemCSV().hashCode()),null);
+    public void add(AjusteImpl ajuste){
+        map.put(Integer.toString(ajuste.getItemCSV().hashCode()),null);
     }
 
-    public ETransaction getETransaction(String key){
-        return map.get(key);
-    }
-
-    public List<ETransaction> getAsList(){
+    public List<AjusteImpl> getAsList(){
        return new ArrayList<>(map.values());
     }
 
-    public boolean contains(ETransaction eTransaction){
-        return map.containsKey(Integer.toString(eTransaction.getItemCSV().hashCode()));
+    public boolean contains(AjusteImpl ajuste){
+        return map.containsKey(Integer.toString(ajuste.getItemCSV().hashCode()));
     }
 }

@@ -1,18 +1,23 @@
 package batchpoc.jobs;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import batchpoc.dao.CompleteDao;
 import batchpoc.model.AjusteImpl;
 import batchpoc.model.ETransaction;
 import batchpoc.model.ItemCSV;
 
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ItemCSVProcessor implements ItemProcessor<ItemCSV, ETransaction> {
-    
-	private static final String	F_INSTANCIA				= "Columna01";
+public class ItemCSVProcessor implements ItemProcessor<ItemCSV, AjusteImpl> {
+    @Autowired
+    CompleteDao completeDao;
+
+    private static final String	F_INSTANCIA				= "Columna01";
 	private static final String	F_REFERENCIA			= "Columna03";				// Contrato
 	private static final String	F_PUNTO					= "Columna04";
 	private static final String	F_TIPO					= "Columna05";
@@ -23,7 +28,7 @@ public class ItemCSVProcessor implements ItemProcessor<ItemCSV, ETransaction> {
 	private static final String	F_SOLICITANTE			= "Columna10";
 	
 	@Override
-    public ETransaction process(ItemCSV itemCSV) throws Exception {
+    public AjusteImpl process(ItemCSV itemCSV) throws Exception {
 		String registro = null;
 		Date fecha;
 		String punto;
@@ -35,8 +40,8 @@ public class ItemCSVProcessor implements ItemProcessor<ItemCSV, ETransaction> {
 		String solicitante;
 		Double energia;
 		
-		registro = itemCSV.getColumna50();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+		//registro = itemCSV.getColumna50();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		fecha = formatter.parse(itemCSV.getColumna02());
 		punto = (String) itemCSV.getColumna04();
 		referencia = (String) itemCSV.getColumna03();
@@ -46,12 +51,13 @@ public class ItemCSVProcessor implements ItemProcessor<ItemCSV, ETransaction> {
 		tipo = (String) itemCSV.getColumna05();
 		solicitante = (String) itemCSV.getColumna10();
 		energia = Double.valueOf(itemCSV.getColumna09().toString());
+
+        //Query de consulta del CompleteDao
+        BigDecimal idTrans = (BigDecimal)completeDao.findTransaccion(fecha,tipo,punto,referencia,refPropia,refExterna,ctoTte,false).get(0);
+        //BigDecimal idTrans = (BigDecimal)completeDao.findTransaccion().get(0);
 		
-		//Query de consulta del CompleteDao
-		Long idTrans = null;
-		
-		AjusteImpl ajuste = (AjusteImpl) new AjusteImpl();
-		ajuste.setTransaccionDTO(idTrans);
+		AjusteImpl ajuste = new AjusteImpl();
+		ajuste.setTransaccionDTO(idTrans.longValue());
 		ajuste.setFecha(fecha);
 		ajuste.setTipo(tipo);
 		ajuste.setEnergia(energia);
@@ -59,7 +65,9 @@ public class ItemCSVProcessor implements ItemProcessor<ItemCSV, ETransaction> {
 		ajuste.setDeltaEnergia(deltaEnergia);
 		ajuste.setFuente("INTERFAZ");
 		ajuste.setFiscalEstimado("N");
-		
-        return new ETransaction(itemCSV);//devolver ajuste
+
+        ajuste.setItemCSV(itemCSV);
+
+        return ajuste;
     }
 }

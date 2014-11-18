@@ -19,6 +19,7 @@ public class AjusteImpl {
     Date dateModified;
     String modifiedBy;
     String fiscalEstimado;
+    ItemCSV itemCSV;
 
     public AjusteImpl() {
     }
@@ -168,5 +169,13 @@ public class AjusteImpl {
 
     public void setFiscalEstimado(String fiscalEstimado) {
         this.fiscalEstimado = fiscalEstimado;
+    }
+
+    public void setItemCSV(ItemCSV itemCSV) {
+        this.itemCSV = itemCSV;
+    }
+
+    public ItemCSV getItemCSV() {
+        return itemCSV;
     }
 }
