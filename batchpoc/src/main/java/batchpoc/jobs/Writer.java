@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import batchpoc.dao.WriterDao;
 import batchpoc.model.ETransaction;
 import batchpoc.services.BagService;
 
@@ -17,6 +18,9 @@ public class Writer implements ItemWriter<ETransaction>{
 
     @Autowired
     private BagService bagService;//aca va el dao
+
+    @Autowired
+    private WriterDao writerDao;
 
     @Override
     public void write(List<? extends ETransaction> items) throws Exception {

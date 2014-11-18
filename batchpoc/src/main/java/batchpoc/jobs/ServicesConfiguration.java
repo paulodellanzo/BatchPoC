@@ -5,6 +5,8 @@ import java.util.Properties;
 
 import batchpoc.dao.ReaderDao;
 import batchpoc.dao.ReaderDaoImpl;
+import batchpoc.dao.WriterDao;
+import batchpoc.dao.WriterDaoImpl;
 import batchpoc.services.BagService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,46 +20,13 @@ public class ServicesConfiguration {
         return new ReaderDaoImpl();
     }
 
+    @Bean
+    public WriterDao writerDao(){
+        return new WriterDaoImpl();
+    }
 
     @Bean
     public BagService BagService(){
         return new BagService();
     }
-/*
-    @Bean
-    public PodcastAndEpisodeAttributesService podcastAndEpisodeAttributesService(){
-        return new PodcastAndEpisodeAttributesServiceImpl();
-    }
-
-    @Bean
-    public EmailNotificationService emailNotificationService1(){
-        return new EmailNotificationServiceImpl();
-    }
-
-    @Bean
-    public SocialMediaService socialMediaService(){
-        return new SocialMediaServiceImpl();
-    }
-
-    @Bean
-    public PoolingHttpClientConnectionManager poolingHttpClientConnectionManager(){
-        PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
-        poolingHttpClientConnectionManager.setMaxTotal(100);
-
-        return poolingHttpClientConnectionManager;
-    }
-
-    @Bean
-    public VelocityEngine velocityEngine() throws VelocityException, IOException{
-        VelocityEngineFactoryBean factory = new VelocityEngineFactoryBean();
-        Properties props = new Properties();
-        props.put("resource.loader", "class");
-        props.put("class.resource.loader.class",
-                "org.apache.velocity.runtime.resource.loader." +
-                        "ClasspathResourceLoader");
-        factory.setVelocityProperties(props);
-
-        return factory.createVelocityEngine();
-    }
-    */
 }
