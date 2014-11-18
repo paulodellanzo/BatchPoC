@@ -11,7 +11,7 @@ public class WriterDaoImpl implements WriterDao{
     private EntityManager entityManager;
 
     public void saveAjuste(AjusteImpl ajuste){
-        Query query = entityManager.createNativeQuery(
+        Query query = this.entityManager.createNativeQuery(
                 "insert into OPE_AJUSTE " +
                         "(DELTA_ENERGIA, DELTA_VOLUMEN, ENERGIA, FECHA, FUENTE, OBSERVACIONES, PODER_CALORIFICO, TIPO, OPE_VALOR_DIA_ID, VOLUMEN, " +
                         "CREATED_BY, DATE_CREATED, DATE_MODIFIED, MODIFIED_BY, FISCAL_ESTIMADO, OPE_AJUSTE_ID) " +

@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2f970f0-508c-4e24-9155-b13250894a4e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDao.java" afterPath="$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/batchpoc/jobs/Writer.java" afterPath="$PROJECT_DIR$/src/main/java/batchpoc/jobs/Writer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDao.java" afterPath="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/batchpoc.ipr" afterPath="$PROJECT_DIR$/batchpoc.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/batchpoc.iws" afterPath="$PROJECT_DIR$/batchpoc.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/insert_into_OPE_AJUSTE.txt" afterPath="$PROJECT_DIR$/src/main/resources/insert_into_OPE_AJUSTE.txt" />
     </list>
     <ignored path="batchpoc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -227,12 +224,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompleteDaoImpl.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CompleteDaoImpl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="190">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.26027396" vertical-offset="0" max-vertical-offset="730">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -240,8 +239,8 @@
       <file leaf-file-name="CompleteDao.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="209">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="247">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -251,17 +250,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AjusteImpl.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AjusteImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/model/AjusteImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1324965" vertical-offset="0" max-vertical-offset="3382">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3382">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding>
                 <element signature="e#1400#1401#0" expanded="true" />
                 <element signature="e#1425#1426#0" expanded="true" />
@@ -336,7 +335,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="836">
-              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -347,8 +346,8 @@
       <file leaf-file-name="ServicesConfiguration.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="418">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -389,13 +388,13 @@
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/jobs/InterfaceJobConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/services/BagService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/insert_into_OPE_AJUSTE.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/jobs/Writer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/model/AjusteImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java" />
       </list>
     </option>
   </component>
@@ -1434,14 +1433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="418">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/model/ETransaction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26027396" vertical-offset="0" max-vertical-offset="730">
@@ -1482,54 +1473,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="836">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/jobs/InterfaceJobConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1740" max-vertical-offset="2470">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="209">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="190">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/model/AjusteImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1324965" vertical-offset="0" max-vertical-offset="3382">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3382">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
             <element signature="e#1400#1401#0" expanded="true" />
             <element signature="e#1425#1426#0" expanded="true" />
@@ -1595,6 +1542,60 @@
             <element signature="e#3861#3862#0" expanded="true" />
             <element signature="e#3921#3922#0" expanded="true" />
             <element signature="e#3973#3974#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="247">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/WriterDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="836">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/jobs/InterfaceJobConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1740" max-vertical-offset="2470">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/jobs/ServicesConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/batchpoc/dao/CompleteDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26027396" vertical-offset="0" max-vertical-offset="730">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
