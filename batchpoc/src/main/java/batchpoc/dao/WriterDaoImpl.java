@@ -1,11 +1,14 @@
 package batchpoc.dao;
 
 import batchpoc.model.AjusteImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class WriterDaoImpl implements WriterDao{
@@ -38,11 +41,12 @@ public class WriterDaoImpl implements WriterDao{
         //(0.0, null, 1254018.0, TO_DATE('2011-08-02','yyyy-MM-dd'), 'INTERFAZ', null, null, 'FIS', 4003552, null, null,null,null,null, 'N', null)
         query.executeUpdate();
 */
-
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    	String fecha = formatter.format(ajuste.getFecha());
         String q = "insert into OPE_AJUSTE\n" +
                 "        (DELTA_ENERGIA, DELTA_VOLUMEN, ENERGIA, FECHA, FUENTE, OBSERVACIONES, PODER_CALORIFICO, TIPO, OPE_VALOR_DIA_ID, VOLUMEN, CREATED_BY, DATE_CREATED, DATE_MODIFIED, MODIFIED_BY, FISCAL_ESTIMADO, OPE_AJUSTE_ID) \n" +
                 "    values\n" +
-                "        ("++", null, 1254018.0, TO_DATE('2011-08-02','yyyy-MM-dd'), 'INTERFAZ', null, null, 'FIS', 4003552, null, null,null,null,null, 'N', null)\n" +
+                "        ("+ajuste.getDeltaEnergia()+", "+ajuste.getDeltaVolumen()+", "+ajuste.getEnergia()+", TO_DATE('"+fecha+"','dd/MM/yyyy'), '"+ajuste.getFuente()+"', null, null, '"+ajuste.getTipo()+"', "+4003552+", null, null,null,null,null,'"+ ajuste.getFiscalEstimado() +"', null)\n" +
                 "\n";
         Query query = this.entityManager.createNativeQuery(q);
         query.executeUpdate();
