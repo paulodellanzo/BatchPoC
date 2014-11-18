@@ -1,14 +1,12 @@
 package batchpoc.jobs;
 
-
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import batchpoc.model.ETransaction;
-
 import batchpoc.services.BagService;
+
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,7 +26,12 @@ public class Writer implements ItemWriter<ETransaction>{
                 //escribo
                 this.bagService.add(etrans);
             }
-
+//            InterfazCorridaTemporal interfazCorridaTemporal = new InterfazCorridaTemporalImpl();
+//            interfazCorridaTemporal.setColumna01(etrans.getItemCSV().getColumna01());
+//            interfazCorridaTemporal.setColumna02(etrans.getItemCSV().getColumna02());
+//            interfazCorridaTemporal.setColumna03(etrans.getItemCSV().getColumna03());
+            
+            
     		/*System.out.println(etrans.getItemCSV().getColumna01());
     		System.out.println(etrans.getItemCSV().getColumna02());
     		System.out.println(etrans.getItemCSV().getColumna03());

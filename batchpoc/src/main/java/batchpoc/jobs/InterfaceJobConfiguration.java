@@ -43,16 +43,16 @@ public class InterfaceJobConfiguration {
                 .build();
     }
 
-    @Bean
-    public Step step2(){
-        return stepBuilderFactory.get("step2")
-                .<ItemCSV,ETransaction>chunk(1)
-                .writer(writer2())
-                .faultTolerant()
-                .skipLimit(0)
-                .skip(Exception.class)
-                .build();
-    }
+//    @Bean
+//    public Step step2(){
+//        return stepBuilderFactory.get("step2")
+//                .<ItemCSV,ETransaction>chunk(1)
+//                .writer(writer2())
+//                .faultTolerant()
+//                .skipLimit(0)
+//                .skip(Exception.class)
+//                .build();
+//    }
 
     @Bean
     public Step step(){
@@ -74,12 +74,6 @@ public class InterfaceJobConfiguration {
         reader.setResource(new ClassPathResource("suggested-podcasts.in"));
         reader.setLineMapper(lineMapper());
         reader.open(new ExecutionContext());
-//        try {
-//			ItemCSV item = reader.read();
-//			System.out.println(item.getColumna01());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
         return reader;
     }
 
@@ -98,14 +92,15 @@ public class InterfaceJobConfiguration {
         		"columna06",
         		"columna07",
         		"columna08",
-        		"columna09"
+        		"columna09",
+        		"columna10"
         		});
 
         BeanWrapperFieldSetMapper<ItemCSV> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(ItemCSV.class);
 
         lineMapper.setLineTokenizer(lineTokenizer);
-        lineMapper.setFieldSetMapper(itemCSVFieldSetMapper());
+        lineMapper.setFieldSetMapper(fieldSetMapper);
 
         return lineMapper;
     }
