@@ -46,11 +46,10 @@ public class WriterDaoImpl implements WriterDao{
         String q = "insert into OPE_AJUSTE\n" +
                 "        (DELTA_ENERGIA, DELTA_VOLUMEN, ENERGIA, FECHA, FUENTE, OBSERVACIONES, PODER_CALORIFICO, TIPO, OPE_VALOR_DIA_ID, VOLUMEN, CREATED_BY, DATE_CREATED, DATE_MODIFIED, MODIFIED_BY, FISCAL_ESTIMADO, OPE_AJUSTE_ID) \n" +
                 "    values\n" +
-                "        ("+ajuste.getDeltaEnergia()+", "+ajuste.getDeltaVolumen()+", "+ajuste.getEnergia()+", TO_DATE('"+fecha+"','dd/MM/yyyy'), '"+ajuste.getFuente()+"', null, null, '"+ajuste.getTipo()+"', "+4003552+", null, null,null,null,null,'"+ ajuste.getFiscalEstimado() +"', null)\n" +
+                "        ("+ajuste.getDeltaEnergia()+", "+ajuste.getDeltaVolumen()+", "+ajuste.getEnergia()+", TO_DATE('"+fecha+"','dd/MM/yyyy'), '"+ajuste.getFuente()+"', null, null, '"+ajuste.getTipo()+"', "+ajuste.getTransaccionDTO()+", null, null,null,null,null,'"+ ajuste.getFiscalEstimado() +"', null)\n" +
                 "\n";
         Query query = this.entityManager.createNativeQuery(q);
         query.executeUpdate();
-
     }
 
 }

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +21,21 @@ public class CompleteDaoImpl implements CompleteDao {
     public static final String TTE_TIPO_DISTRIBUCION = "DISTRIBUCION";
     public static final String TTE_TIPO_SERVICIOS = "SERVICIOS";
 
+    public Long findTransaccionDiaria(Long tmId, Date fecha)
+	{
+		StringBuffer sql = new StringBuffer();
+        sql.append("SELECT T.OPE_VALOR_DIA_ID ");
+        sql.append("          FROM OPE_VALOR_DIA   T ");
+        sql.append("          WHERE T.TRANSAC_MARCO_ID = :tmId AND T.FECHA = :fecha");
+        
+        Query query = this.entityManager.createNativeQuery(sql.toString());
+
+        query.setParameter("tmId", tmId);
+        query.setParameter("fecha", fecha);
+
+        return new Long(((BigDecimal) query.getSingleResult()).longValue());
+	}
+    
     private StringBuffer getQueryTransaccionMarcoSQL(String clase) {
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT TM.TRANSAC_MARCO_ID ");

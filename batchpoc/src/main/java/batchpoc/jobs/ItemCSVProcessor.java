@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import batchpoc.dao.CompleteDao;
 import batchpoc.model.AjusteImpl;
@@ -26,6 +27,7 @@ public class ItemCSVProcessor implements ItemProcessor<ItemCSV, AjusteImpl> {
 	private static final String	F_REF_EXTERNA			= "Columna08";				// Primaria
 	private static final String	F_VOLUMEN				= "Columna09";
 	private static final String	F_SOLICITANTE			= "Columna10";
+	private static final String		TIPO_AJUSTE				= "FIS";
 	
 	@Override
     public AjusteImpl process(ItemCSV itemCSV) throws Exception {
@@ -43,23 +45,26 @@ public class ItemCSVProcessor implements ItemProcessor<ItemCSV, AjusteImpl> {
 		//registro = itemCSV.getColumna50();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		fecha = formatter.parse(itemCSV.getColumna02());
-		punto = (String) itemCSV.getColumna04();
-		referencia = (String) itemCSV.getColumna03();
-		refPropia = (String) itemCSV.getColumna07();
-		refExterna = (String) itemCSV.getColumna08();
-		ctoTte = (String) itemCSV.getColumna06();
-		tipo = (String) itemCSV.getColumna05();
-		solicitante = (String) itemCSV.getColumna10();
-		energia = Double.valueOf(itemCSV.getColumna09().toString());
+		punto = itemCSV.getColumna04();
+		referencia = itemCSV.getColumna03();
+		refPropia = itemCSV.getColumna07();
+		refExterna = itemCSV.getColumna08();
+		//El reader usa string vacio si no tiene dato el campo
+		refExterna = refExterna.equals("") ? null : refExterna;
+		ctoTte = itemCSV.getColumna06();
+		tipo = itemCSV.getColumna05();
+		solicitante = itemCSV.getColumna10();
+		energia = Double.valueOf(itemCSV.getColumna09());
 
-        //Query de consulta del CompleteDao
-        BigDecimal idTrans = (BigDecimal)completeDao.findTransaccion(fecha,tipo,punto,referencia,refPropia,refExterna,ctoTte,false).get(0);
-        //BigDecimal idTrans = (BigDecimal)completeDao.findTransaccion().get(0);
-		
+        //Query de consulta
+		List findTransaccion = completeDao.findTransaccion(fecha,tipo,punto,referencia,refPropia,refExterna,ctoTte,false);
+        BigDecimal idTrans = (BigDecimal) findTransaccion.get(0);
+        Long idTransDiaria = completeDao.findTransaccionDiaria(idTrans.longValue(), fecha);
+        
 		AjusteImpl ajuste = new AjusteImpl();
-		ajuste.setTransaccionDTO(idTrans.longValue());
+		ajuste.setTransaccionDTO(idTransDiaria);
 		ajuste.setFecha(fecha);
-		ajuste.setTipo(tipo);
+		ajuste.setTipo(TIPO_AJUSTE);
 		ajuste.setEnergia(energia);
 		Double deltaEnergia = new Double(energia.doubleValue() - energia.doubleValue());//(eneFis.doubleValue()));
 		ajuste.setDeltaEnergia(deltaEnergia);
