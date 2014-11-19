@@ -2,7 +2,6 @@ package batchpoc.jobs;
 
 import batchpoc.common.configuration.InfrastructureConfiguration;
 import batchpoc.model.AjusteImpl;
-import batchpoc.model.ETransaction;
 import batchpoc.model.ItemCSV;
 
 import org.springframework.batch.core.Job;
@@ -10,6 +9,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
@@ -40,14 +40,14 @@ public class InterfaceJobConfiguration {
     public Job interfaceJob(){
         return jobs.get("interfaceJob")
                 .listener(protocolListener())
-                .start(step())
+                .start(stepImportInterface()).next(stepDestroy())
                 .build();
     }
 
 
     @Bean
-    public Step step(){
-        return stepBuilderFactory.get("step")
+    public Step stepImportInterface(){
+        return stepBuilderFactory.get("stepImportInterface")
                 .<ItemCSV,AjusteImpl>chunk(1) //important to be one in this case to commit after every line read
                 .reader(reader())
                 .processor(processor())
@@ -55,6 +55,13 @@ public class InterfaceJobConfiguration {
                 .faultTolerant()
                 .skipLimit(0) //default is set to 0
                 .skip(Exception.class)
+                .build();
+    }
+
+    @Bean
+    protected Step stepDestroy() {
+        return stepBuilderFactory.get("stepDestroy")
+                .tasklet(destroyTasklet())
                 .build();
     }
 
@@ -106,6 +113,9 @@ public class InterfaceJobConfiguration {
     public ItemProcessor<ItemCSV, AjusteImpl> processor() {
         return new ItemCSVProcessor();
     }
+
+    @Bean
+    public Tasklet destroyTasklet() { return new DestroyTasklet(); }
 
     @Bean
     public ItemWriter<AjusteImpl> writer() {

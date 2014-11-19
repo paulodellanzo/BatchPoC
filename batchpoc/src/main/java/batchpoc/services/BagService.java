@@ -19,4 +19,8 @@ public class BagService {
     public boolean contains(AjusteImpl ajuste){
         return map.containsKey(Integer.toString(ajuste.getItemCSV().hashCode()));
     }
+
+    public void emptyBag() {
+        this.map = new HashMap<>();
+    }
 }
