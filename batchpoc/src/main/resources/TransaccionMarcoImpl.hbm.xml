@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+<!-- 	<typedef name="TipoAutomaticoRestringidoType" -->
+<!-- 		class="ar.com.odea.util.hibernate.EnumUserType"> -->
+<!-- 		<param name="enumClass"> -->
+<!-- 			ar.com.odea.esigas.model.jbo.configuracion.operacion.TipoRestringidoAutomatico -->
+<!-- 		</param> -->
+<!-- 	</typedef> -->
+<!-- 	<typedef name="ClaseTransaccionMarco" -->
+<!-- 		class="ar.com.odea.util.hibernate.EnumUserType"> -->
+<!-- 		<param name="enumClass"> -->
+<!-- 			ar.com.odea.esigas.model.jbo.configuracion.operacion.ClaseTransaccionMarco -->
+<!-- 		</param> -->
+<!-- 	</typedef> -->
+<!-- 	<typedef name="RecepcionEntregaTransaccionMarco" -->
+<!-- 		class="ar.com.odea.util.hibernate.EnumUserType"> -->
+<!-- 		<param name="enumClass"> -->
+<!-- 			ar.com.odea.esigas.model.jbo.configuracion.operacion.RecepcionEntregaTransaccionMarco -->
+<!-- 		</param> -->
+<!-- 	</typedef>		 -->
+	
+    <class
+        name="batchpoc.model.TransaccionMarcoImpl"
+        table="OPE_TM_TRANSAC_MARCO"
+        
+    >
+
+        <id
+            name="id"
+            column="TRANSAC_MARCO_ID"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">primary_keys_seq</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-TransaccionMarcoImpl.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="alias"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ALIAS"
+        />
+
+        <property
+            name="autoAsignado"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTO_ASIGNADO"
+        />
+
+        <property
+            name="autoFiscal"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTO_FISCAL"
+        />
+
+        <property
+            name="autoRestringido"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTO_RESTRINGIDO"
+        />
+
+        <property
+            name="autoSolicitado"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTO_SOLICITADO"
+        />
+
+        <property
+            name="CExtension1"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="C_EXTENSION1"
+        />
+
+        <property
+            name="CExtension2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="C_EXTENSION2"
+        />
+
+        <property
+            name="CExtension3"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="C_EXTENSION3"
+        />
+
+        <property
+            name="CExtension4"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="C_EXTENSION4"
+        />
+
+        <property
+            name="CExtension5"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="C_EXTENSION5"
+        />
+
+        <property
+            name="clase"
+            type="java.lang.String"
+            update="false"
+            insert="false"
+            column="CLASE"
+        />
+        <property
+            name="claseEnum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CLASE"
+        />
+
+<!--         <many-to-one -->
+<!--             name="referenciaTransporte" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.referencia.ReferenciaImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CON_TRANSPORTE_ID" -->
+<!--         /> -->
+
+        <property
+            name="DExtension1"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="D_EXTENSION1"
+        />
+
+        <property
+            name="DExtension2"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="D_EXTENSION2"
+        />
+
+        <property
+            name="DExtension3"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="D_EXTENSION3"
+        />
+
+        <property
+            name="DExtension4"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="D_EXTENSION4"
+        />
+
+        <property
+            name="DExtension5"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="D_EXTENSION5"
+        />
+
+        <property
+            name="estadoActividad"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ESTADO_ACTIVIDAD"
+        />
+
+<!--         <many-to-one -->
+<!--             name="instalacion" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.instalacionfisica.InstalacionImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CF_INSTALACION_ID" -->
+<!--         /> -->
+
+        <property
+            name="NExtension1"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="N_EXTENSION1"
+        />
+
+        <property
+            name="NExtension2"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="N_EXTENSION2"
+        />
+
+        <property
+            name="NExtension3"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="N_EXTENSION3"
+        />
+
+        <property
+            name="NExtension4"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="N_EXTENSION4"
+        />
+
+        <property
+            name="NExtension5"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="N_EXTENSION5"
+        />
+
+        <property
+            name="nombre"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NOMBRE"
+        />
+
+        <property
+            name="observaciones"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OBSERVACIONES"
+        />
+
+        <property
+            name="orden"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="ORDEN"
+        />
+
+<!--         <many-to-one -->
+<!--             name="puntoMedicion" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.instalacionfisica.PuntoMedicionImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CF_PUNTO_MEDICION_ID" -->
+<!--         /> -->
+
+        <property
+            name="recepcionEntrega"
+            type="java.lang.String"
+            update="false"
+            insert="false"
+            column="RECEP_ENTREGA"
+        />
+        <property
+            name="recepcionEntregaEnum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RECEP_ENTREGA"
+        />
+
+<!--         <many-to-one -->
+<!--             name="referencia" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.referencia.ReferenciaImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="OPE_REFERENCIA_ID" -->
+<!--         /> -->
+
+<!--         <many-to-one -->
+<!--             name="referenciaExterna" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.referencia.ReferenciaExternaImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="REF_EXTERNA_ID" -->
+<!--         /> -->
+
+<!--         <many-to-one -->
+<!--             name="referenciaPropia" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.referencia.ReferenciaPropiaImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="REF_PROPIA_ID" -->
+<!--         /> -->
+
+        <property
+            name="reglaNominadores"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REGLA_NOMINADORES"
+        />
+
+        <property
+            name="reglaProgramacionFinal"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REGLA_PROG_FINAL"
+        />
+
+<!--         <many-to-one -->
+<!--             name="ruta" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.zonatarifaria.RutaImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="ZON_RUTA_ID" -->
+<!--         /> -->
+
+<!--         <set -->
+<!--             name="transaccionesFuente" -->
+            
+<!--             inverse="true" -->
+<!--             cascade="none" -->
+<!--             sort="unsorted" -->
+<!--         > -->
+
+<!--             <key -->
+<!--                 column="TRANSAC_MARCO_ID" -->
+<!--             > -->
+<!--             </key> -->
+
+<!--             <one-to-many -->
+<!--                   class="ar.com.odea.esigas.model.jbo.configuracion.operacion.TransaccionMarcoCalculadaImpl" -->
+<!--             /> -->
+
+<!--         </set> -->
+
+<!--         <many-to-one -->
+<!--             name="cuenca" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.dominio.CuencaImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CUENCA_ID" -->
+<!--         /> -->
+
+<!--         <set name="nominadores" inverse="true" cascade="none" sort="unsorted"> -->
+<!--             <key column="TRANSAC_MARCO_ID" /> -->
+<!--             <one-to-many class="ar.com.odea.esigas.model.jbo.configuracion.operacion.NominadorTransacMarcoImpl" /> -->
+<!--         </set> -->
+
+<!--         <set name="datosVigenciaEstadoImportacion" inverse="true" cascade="none" order-by="VIGENCIA_DESDE DESC"> -->
+<!--             <key column="tm_transac_marco_id" /> -->
+<!--             <one-to-many class="ar.com.odea.esigas.model.jbo.configuracion.operacion.DatosVigenciaEstadoImportacionTMImpl" /> -->
+<!--         </set> -->
+
+<!--         <set name="datosVigenciaEstadoInterfacesTransportistas" inverse="true" cascade="none" order-by="VIGENCIA_DESDE DESC"> -->
+<!--             <key column="tm_transac_marco_id" /> -->
+<!--             <one-to-many class="ar.com.odea.esigas.model.jbo.configuracion.operacion.DatosVigenciaEstadoInterfacesTransportistasTMImpl" /> -->
+<!--         </set> -->
+
+<!--         <property -->
+<!--             name="createdBy" -->
+<!--             type="java.lang.String" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CREATED_BY" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="dateCreated" -->
+<!--             type="java.util.Date" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="DATE_CREATED" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="dateModified" -->
+<!--             type="java.util.Date" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="DATE_MODIFIED" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="modifiedBy" -->
+<!--             type="java.lang.String" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="MODIFIED_BY" -->
+<!--         /> -->
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-TransaccionMarcoImpl.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

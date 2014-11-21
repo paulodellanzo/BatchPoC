@@ -559,4 +559,9 @@ public class ItemCSV {
         return Objects.hashCode(columna01, columna02, columna03,columna04,columna05,columna06,columna07,columna08,columna09,columna10);
     }
 
+	public String serializeAsCSV() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 }

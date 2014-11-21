@@ -40,15 +40,14 @@ public class InterfaceJobConfiguration {
     public Job interfaceJob(){
         return jobs.get("interfaceJob")
                 .listener(protocolListener())
-                .start(stepImportInterface()).next(stepDestroy())
+                .start(stepImportInterface())//.next(stepDestroy())
                 .build();
     }
-
 
     @Bean
     public Step stepImportInterface(){
         return stepBuilderFactory.get("stepImportInterface")
-                .<ItemCSV,AjusteImpl>chunk(1) //important to be one in this case to commit after every line read
+                .<ItemCSV,ItemCSV>chunk(1) //important to be one in this case to commit after every line read
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())
@@ -58,12 +57,12 @@ public class InterfaceJobConfiguration {
                 .build();
     }
 
-    @Bean
-    protected Step stepDestroy() {
-        return stepBuilderFactory.get("stepDestroy")
-                .tasklet(destroyTasklet())
-                .build();
-    }
+//    @Bean
+//    protected Step stepDestroy() {
+//        return stepBuilderFactory.get("stepDestroy")
+//                .tasklet(destroyTasklet())
+//                .build();
+//    }
 
     @Bean
     public ItemReader<ItemCSV> reader(){
@@ -110,7 +109,7 @@ public class InterfaceJobConfiguration {
 
     /** configure the processor related stuff */
     @Bean
-    public ItemProcessor<ItemCSV, AjusteImpl> processor() {
+    public ItemProcessor<ItemCSV, ItemCSV> processor() {
         return new ItemCSVProcessor();
     }
 
@@ -118,7 +117,7 @@ public class InterfaceJobConfiguration {
     public Tasklet destroyTasklet() { return new DestroyTasklet(); }
 
     @Bean
-    public ItemWriter<AjusteImpl> writer() {
+    public ItemWriter<ItemCSV> writer() {
         return new Writer();
     }
 

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+
+    <class
+        name="batchpoc.model.InterfazCorridaImpl"
+        table="XCH_CORRIDA"
+        
+    >
+
+        <id
+            name="id"
+            column="XCH_CORRIDA_ID"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">primary_keys_seq</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-InterfazCorridaImpl.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="datosFechaDesde"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="DATOS_FECHA_DESDE"
+        />
+
+        <property
+            name="datosFechaHasta"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="DATOS_FECHA_HASTA"
+        />
+
+        <property
+            name="errorLog"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ERROR_LOG"
+        />
+
+        <property
+            name="estado"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ESTADO"
+        />
+
+        <property
+            name="fecha"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="FECHA"
+        />
+
+        <property
+            name="fechaFin"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="FECHA_FIN"
+        />
+
+        <property
+            name="responsable"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RESPONSABLE"
+        />
+
+
+		<property
+            name="archivo"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="XCH_INTERFAZ_ARCHIVO_ID"
+        />
+<!--         <many-to-one -->
+<!--             name="archivo" -->
+<!--             class="ar.com.odea.esigas.model.jbo.interfaz.InterfazArchivoImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="XCH_INTERFAZ_ARCHIVO_ID" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="createdBy" -->
+<!--             type="java.lang.String" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CREATED_BY" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="dateCreated" -->
+<!--             type="java.util.Date" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="DATE_CREATED" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="dateModified" -->
+<!--             type="java.util.Date" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="DATE_MODIFIED" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="modifiedBy" -->
+<!--             type="java.lang.String" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="MODIFIED_BY" -->
+<!--         /> -->
+        
+        <property
+            name="lineasErroneas"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="LINEASERRONEAS"
+        />
+        
+        <property
+            name="archivoFuente"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ARCHIVOFUENTE"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-InterfazCorridaImpl.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
