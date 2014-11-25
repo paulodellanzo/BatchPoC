@@ -103,16 +103,26 @@ public class CompleteDaoImpl implements CompleteDao {
         }
     }
 
-    public List findTransaccion() {
-        try {
-            String sql = "SELECT TM.TRANSAC_MARCO_ID           FROM OPE_TM_TRANSAC_MARCO   TM         ,      REF_REFERENCIA         RR         ,      REF_REFERENCIA_PROPIA  RP         ,      REF_REFERENCIA_EXTERNA RE         ,      CON_CONTRATO           CC         ,      CF_PUNTO_MEDICION      PM        ,     (SELECT R.REF_REFERENCIA_ID                ,      R.ALIAS                ,      C.FECHA_EFECTIVA                ,      C.FECHA_CANCELACION                ,      C.FECHA_VENCIMIENTO                  FROM REF_REFERENCIA R                ,      CON_CONTRATO   C                 WHERE TIPO IN ('TRANSPORTE','TRANSPORTE TERCEROS','USO CAPACIDAD','DISTRIBUCION','SERVICIOS')                   AND R.REF_REFERENCIA_ID = C.REFERENCIA_ID(+)) CT          WHERE TM.OPE_REFERENCIA_ID    = RR.REF_REFERENCIA_ID            AND TM.CF_PUNTO_MEDICION_ID = PM.CF_PUNTO_MEDICION_ID            AND TM.CON_TRANSPORTE_ID    = CT.REF_REFERENCIA_ID(+)            AND TM.REF_PROPIA_ID        = RP.REFERENCIA_PROPIA_ID(+)            AND TM.REF_EXTERNA_ID       = RE.REFERENCIA_EXTERNA_ID(+)            AND TM.OPE_REFERENCIA_ID    = CC.REFERENCIA_ID(+)            \n" +
-                    "AND TM.RECEP_ENTREGA    = 'R'            AND TRIM(UPPER(PM.ALIAS))    = 'I0062'            AND TRIM(UPPER(RR.ALIAS))    = 'N-ARCOR-A04'            AND TRIM(UPPER(CT.ALIAS))    = 'CUYANA'            AND TRIM(UPPER(RP.ALIAS))    = 'PETPAEVAT20085-ARCOR GP'            AND TRIM(UPPER(RE.ALIAS))    = 'UNPAE'";
-            Query query = this.entityManager.createNativeQuery(sql.toString());
+	public List<BigDecimal> findLocalizacionId(Long transId, String solicitante) {
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT O.PART_LOCALIZADO_ID");
+			sql.append("  FROM OPE_TM_NOMINADOR O");
+			sql.append(",      PAR_LOCALIZACION P");
+			sql.append(" WHERE O.PART_LOCALIZADO_ID = P.PAR_LOCALIZACION_ID");
+			sql.append("   AND O.ESTADO_ACTIVIDAD   = :activado");
+			sql.append("   AND O.TRANSAC_MARCO_ID   = :transId");
+			sql.append("   AND UPPER(P.ALIAS)       = :solicitante");
 
-            return query.getResultList();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }
+			Query query = this.entityManager.createNativeQuery(sql.toString());
+			query.setParameter("transId", transId.longValue());
+			query.setParameter("solicitante", solicitante.toUpperCase());
+			query.setParameter("activado", "A");
+			return query.getResultList();
+		
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
 
 }

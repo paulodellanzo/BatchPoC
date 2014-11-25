@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+
+    <class
+        name="batchpoc.model.ProgramacionImpl"
+        table="OPE_PROGRAMACION">
+        
+<!-- 	OJO, si se modifica este mapeo se debe modificar tambien el metodo getPedidoAprobadoBrief de OperacionDAOFacade , sino se rompera el brief de pedidos de estado de nominacion-->
+
+        <id
+            name="id"
+            column="OPE_PROGRAMACION_ID"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">primary_keys_seq</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-ProgramacionImpl.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="corte"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="CORTE"
+        />
+
+        <property
+            name="fuente"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FUENTE"
+        />
+
+		<property
+            name="localizacion"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="PAR_LOCALIZACION_ID"
+        />
+<!--         <many-to-one -->
+<!--             name="localizacion" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.participante.LocalizacionImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="PAR_LOCALIZACION_ID" -->
+<!--         /> -->
+
+        <property
+            name="observaciones"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OBSERVACIONES"
+        />
+
+        <property
+            name="tipo"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TIPO"
+        />
+
+		<property name="transaccionMarco" type="java.lang.Long"
+			update="true" insert="true" column="TRANSAC_MARCO_ID" />
+			
+<!--         <many-to-one -->
+<!--             name="transaccionMarco" -->
+<!--             class="ar.com.odea.esigas.model.jbo.configuracion.operacion.TransaccionMarcoImpl" -->
+<!--             cascade="none" -->
+<!--             outer-join="auto" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="TRANSAC_MARCO_ID" -->
+<!--         /> -->
+
+        <property
+            name="cantidadEnergia"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="ENERGIA"
+        />
+
+        <property
+            name="cantidadPoderCalorifico"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="PODER_CALORIFICO"
+        />
+
+        <property
+            name="cantidadVolumen"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="VOLUMEN"
+        />
+
+        <property
+            name="fecha"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="FECHA"
+        />
+
+        <property
+            name="fechaPublica"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="FECHA_PUBLICA"
+        />
+
+<!--         <property -->
+<!--             name="createdBy" -->
+<!--             type="java.lang.String" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="CREATED_BY" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="dateCreated" -->
+<!--             type="java.util.Date" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="DATE_CREATED" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="dateModified" -->
+<!--             type="java.util.Date" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="DATE_MODIFIED" -->
+<!--         /> -->
+
+<!--         <property -->
+<!--             name="modifiedBy" -->
+<!--             type="java.lang.String" -->
+<!--             update="true" -->
+<!--             insert="true" -->
+<!--             column="MODIFIED_BY" -->
+<!--         /> -->
+
+        <property
+            name="prioridad"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="PRIORIDAD"
+        />
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-ProgramacionImpl.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

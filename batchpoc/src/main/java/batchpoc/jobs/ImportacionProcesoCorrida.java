@@ -18,6 +18,7 @@ import batchpoc.model.AjusteImpl;
 import batchpoc.model.EstadoInterfazCorrida;
 import batchpoc.model.InterfazCorridaImpl;
 import batchpoc.model.ItemCSV;
+import batchpoc.model.ProgramacionImpl;
 import batchpoc.model.TransaccionImpl;
 import batchpoc.model.TransaccionMarcoImpl;
 
@@ -163,8 +164,7 @@ public abstract class ImportacionProcesoCorrida {
 		if (!"".equals(errorLog)) {
 			errorLog += this.BREAK_LINE;
 		}
-		String mensajeError = registro == null ? error : registro + ") "
-				+ error;
+		String mensajeError = registro == null ? error : registro + ") " + error;
 		this.setErrorLog(errorLog + mensajeError);
 	}
 
@@ -290,6 +290,71 @@ public abstract class ImportacionProcesoCorrida {
 			throw e;
 		}
 		
+	}
+	
+	public void saveVolProgramacion(TransaccionMarcoImpl tm, Date fecha, String tipo, Double energia, Integer corte, Integer prioridad, Long localId, Date fechaCorrida, String codCorte, String fuente) throws Exception
+	{
+		this.saveVolProgramacion(tm, fecha, tipo, energia, corte, prioridad, localId, fechaCorrida, codCorte, null, fuente);
+	}
+
+	/**
+	 * Graba los volúmenes de programación.
+	 */
+	public void saveVolProgramacion(TransaccionMarcoImpl tm,
+									Date fecha,
+									String tipo,
+									Double energia,
+									Integer corte,
+									Integer prioridad,
+									Long localId,
+									Date fechaCorrida,
+									String codCorte,
+									HashMap<String, String> datosAdicionales,
+									String fuente) throws Exception
+	{
+		try
+		{
+			// Parche: TGS modificó de 3 a 4 dígitos. Ticket:7939, 9519
+			if (prioridad != null && prioridad.toString().trim().length() > 4)
+			{
+				prioridad = Integer.valueOf(prioridad.toString().trim().substring(0, 4));
+			}
+			// Obtengo los datos adicionales. Ticket: 10729
+			String documento = null;
+			String version = null;
+			String refExterna = null;
+			String productor = null;
+			if (datosAdicionales != null)
+			{
+				documento = datosAdicionales.get("documento").toString();
+				version = datosAdicionales.get("version").toString();
+				refExterna = datosAdicionales.get("refExterna").toString();
+				productor = datosAdicionales.get("productor").toString();
+			}
+
+			ProgramacionImpl programacion = new ProgramacionImpl();
+			programacion.setFecha(fecha);
+			programacion.setTransaccionMarco(tm.getId());
+			programacion.setTipo(tipo);
+			programacion.setFuente(fuente);
+			programacion.setCantidadEnergia(energia);
+			programacion.setFechaPublica(fechaCorrida);
+			programacion.setCorte(corte);
+			programacion.setPrioridad(prioridad);
+
+			// programacion.setAttribute("CExtension1", documento);
+			// programacion.setAttribute("CExtension2", version);
+			// programacion.setAttribute("CExtension3", refExterna);
+			// programacion.setAttribute("CExtension4", codCorte);
+			// programacion.setAttribute("CExtension5", productor);
+
+			programacion.setLocalizacion(localId);
+			this.getWriterDao().saveProgramacion(programacion);
+		}
+		catch (Exception e)
+		{
+			throw e;
+		}
 	}
 
 	private void throwTransaccionError(String string, Date fecha, String tipo,

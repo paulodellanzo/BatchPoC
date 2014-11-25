@@ -2,6 +2,7 @@ package batchpoc.dao;
 
 import batchpoc.model.AjusteImpl;
 import batchpoc.model.InterfazCorridaImpl;
+import batchpoc.model.ProgramacionImpl;
 import batchpoc.model.TransaccionImpl;
 
 import org.hibernate.Session;
@@ -31,6 +32,11 @@ public class WriterDaoImpl implements WriterDao {
 	public void saveTransaccionImpl(TransaccionImpl transaccion) {
 		Session session = entityManager.unwrap(Session.class);
 		session.saveOrUpdate(transaccion);
+	}
+
+	public void saveProgramacion(ProgramacionImpl programacion) {
+		Session session = entityManager.unwrap(Session.class);
+		session.saveOrUpdate(programacion);
 	}
 
 }
