@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="batchpoc.model.TransaccionImpl"
+		table="OPE_VALOR_DIA">
+
+		<id name="id" column="OPE_VALOR_DIA_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">primary_keys_seq</param>
+				<!--  
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-TransaccionImpl.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+
+		<property name="fecha" type="date" update="true"
+			insert="true" column="FECHA" />
+
+		<property name="transaccionMarco" type="java.lang.Long"
+			update="true" insert="true" column="TRANSAC_MARCO_ID" />
+			
+<!-- 		<many-to-one name="transaccionMarco" -->
+<!-- 			class="ar.com.odea.esigas.model.jbo.configuracion.operacion.TransaccionMarcoImpl" -->
+<!-- 			cascade="none" outer-join="auto" update="true" insert="true" -->
+<!-- 			column="TRANSAC_MARCO_ID" /> -->
+
+		<property name="valorSolicitado" type="java.lang.Double"
+			update="true" insert="true" column="SOL_PRG" />
+
+		<property name="valorAsignadoProductor" type="java.lang.Double"
+			update="true" insert="true" column="ASIG_PRG" />
+
+		<property name="valorConfirmadoTransporte"
+			type="java.lang.Double" update="true" insert="true"
+			column="REST_PRG" />
+
+		<property name="unidadMedicionProgramacion"
+			type="java.lang.Long" update="true" insert="true"
+			column="CN_UNIDAD_MEDICION_PRG_ID" />
+<!-- 		<many-to-one name="unidadMedicionProgramacion" -->
+<!-- 			class="ar.com.odea.esigas.model.jbo.configuracion.unidad.UnidadMedicionImpl" -->
+<!-- 			cascade="none" outer-join="auto" update="true" insert="true" -->
+<!-- 			column="CN_UNIDAD_MEDICION_PRG_ID" /> -->
+
+		<property name="valorEnergiaReal" type="java.lang.Double"
+			update="true" insert="true" column="ENER_FIS" />
+
+		<property name="valorVolumenReal" type="java.lang.Double"
+			update="true" insert="true" column="VOL_FIS" />
+
+		<property name="valorPCReal" type="java.lang.Double"
+			update="true" insert="true" column="PC_FIS" />
+
+		<property name="valorEnergiaMedicionPropia"
+			type="java.lang.Double" update="true" insert="true"
+			column="ENER_MED_PROPIA" />
+
+		<property name="valorVolumenMedicionPropia"
+			type="java.lang.Double" update="true" insert="true"
+			column="VOL_MED_PROPIA" />
+
+		<property name="valorPCMedicionPropia" type="java.lang.Double"
+			update="true" insert="true" column="PC_MED_PROPIA" />
+
+		<property name="fuenteProgramacion" type="java.lang.String"
+			update="true" insert="true" column="FUENTE_INFO_PRG" />
+
+		<property name="fuenteReal" type="java.lang.String"
+			update="true" insert="true" column="FUENTE_INFO_FIS" />
+
+		<property name="fuenteMedicionPropia" type="java.lang.String"
+			update="true" insert="true" column="FUENTE_INFO_MED" />
+
+		<property name="observaciones" type="java.lang.String"
+			update="true" insert="true" column="OBSERVACIONES" />
+
+		<property name="fuenteInfo" type="java.lang.String"
+			update="true" insert="true" column="FUENTE_INFO" />
+
+<!-- 		<set name="ajustes" inverse="true" cascade="all,delete-orphan"> -->
+<!-- 			<key column="OPE_VALOR_DIA_ID"></key> -->
+<!-- 			<one-to-many class="ar.com.odea.esigas.model.jbo.operacion.AjusteImpl" /> -->
+<!-- 		</set> -->
+
+		<property name="fiscalEstimado"
+			type="java.lang.String" update="true"
+			insert="true" column="FISCAL_ESTIMADO" />
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-TransaccionImpl.xml
+			containing the additional properties and place it in your merge dir.
+		-->
+
+	</class>
+
+</hibernate-mapping>

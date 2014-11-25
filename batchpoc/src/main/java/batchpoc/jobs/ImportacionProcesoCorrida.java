@@ -18,6 +18,7 @@ import batchpoc.model.AjusteImpl;
 import batchpoc.model.EstadoInterfazCorrida;
 import batchpoc.model.InterfazCorridaImpl;
 import batchpoc.model.ItemCSV;
+import batchpoc.model.TransaccionImpl;
 import batchpoc.model.TransaccionMarcoImpl;
 
 public abstract class ImportacionProcesoCorrida {
@@ -222,14 +223,40 @@ public abstract class ImportacionProcesoCorrida {
 	private void generarTransaccionDiaria(TransaccionMarcoImpl tmarco,
 			Date fecha, Double energia, String fuente, String tipo,
 			String fiscalEstimado) throws Exception {
-
 		Long idTransDiaria = getCompleteDao().findTransaccionDiaria(tmarco.getId(), fecha);
 		Double eneFis = energia;
+		Long unidadM3 = new Long(1043531);
+		Long unidadTransaccion = null;
 		
-		this.generarAjuste(idTransDiaria, fecha, eneFis, null, energia, null, tipo, fiscalEstimado, fuente);
+		Session session = entityManager.unwrap(Session.class);
+		TransaccionImpl transaccion = null;
+		if (idTransDiaria == null)// No existia la transaccion por lo tanto tomo los valores creados de la nueva
+		{
+			transaccion = new TransaccionImpl();
+			transaccion.setTransaccionMarco(tmarco.getId());
+			transaccion.setFecha(fecha);
+			eneFis = energia;
+			unidadTransaccion = transaccion.getUnidadMedicionProgramacion();
+		}
+		else
+		{
+			TransaccionImpl tr = (TransaccionImpl) session.get(TransaccionImpl.class, new Long(idTransDiaria.longValue()));
+			transaccion = tr;
+			eneFis = tr.getValorEnergiaReal();
+			unidadTransaccion = tr.getUnidadMedicionProgramacion();
+		}
+//		transaccion.setCantidadEnergiaReal((CantidadEnergia) cantidad);
+		transaccion.setFuenteInfo(fuente);
+		transaccion.setFuenteReal(fuente);
+		transaccion.setUnidadMedicionProgramacion(unidadM3);
+		transaccion.setValorEnergiaReal(energia);
+		
+		this.getWriterDao().saveTransaccionImpl(transaccion);
+		this.generarAjuste(idTransDiaria, fecha, eneFis, unidadM3, energia, unidadTransaccion, tipo, fiscalEstimado, fuente);
+		session.flush();
 	}
 	
-	private void generarAjuste(Long idTransDiaria, Date fecha, Double eneFis, String unidadEnergia, Double energia, String unidadFiscal, String tipo, String fiscalEstimado, String fuente) throws Exception
+	private void generarAjuste(Long idTransDiaria, Date fecha, Double eneFis, Long unidadEnergia, Double energia, Long unidadFiscal, String tipo, String fiscalEstimado, String fuente) throws Exception
 	{
 		try
 		{
