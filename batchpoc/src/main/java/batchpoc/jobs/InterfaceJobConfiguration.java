@@ -9,6 +9,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemProcessor;
@@ -20,6 +21,7 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -30,6 +32,8 @@ import org.springframework.core.io.ClassPathResource;
 @Import({InfrastructureConfiguration.class, ServicesConfiguration.class})
 public class InterfaceJobConfiguration {
 
+	private static final String OVERRIDDEN_BY_EXPRESSION = null;
+	
     @Autowired
     private JobBuilderFactory jobs;
 
@@ -48,7 +52,7 @@ public class InterfaceJobConfiguration {
     public Step stepImportInterface(){
         return stepBuilderFactory.get("stepImportInterface")
                 .<ItemCSV,ItemCSV>chunk(1) //important to be one in this case to commit after every line read
-                .reader(reader())
+                .reader(reader(OVERRIDDEN_BY_EXPRESSION))
                 .processor(processor())
                 .writer(writer())
                 .faultTolerant()
@@ -65,8 +69,10 @@ public class InterfaceJobConfiguration {
 //    }
 
     @Bean
-    public ItemReader<ItemCSV> reader(){
-        FlatFileItemReader<ItemCSV> reader = new FlatFileItemReader<>();
+    @StepScope
+    public ItemReader<ItemCSV> reader(@Value("#{jobParameters['tipo']}") String tipo){
+        ReaderCSV<ItemCSV> reader = new ReaderCSV<>();
+        reader.setTipo(tipo);
         reader.setLinesToSkip(1);//first line is title definition
         reader.setResource(new ClassPathResource("suggested-podcasts.in"));
         reader.setLineMapper(lineMapper());

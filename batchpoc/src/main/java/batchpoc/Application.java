@@ -32,35 +32,39 @@ public class Application {
 
     private static final String INTERFACE_JOB = "interfaceJob";
 
-    public static void main(String[] args) throws BeansException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException {
-        Log log = LogFactory.getLog(Application.class);
-
-        SpringApplication app = new SpringApplication(Application.class);
-        app.setWebEnvironment(false);
-        ConfigurableApplicationContext ctx = app.run(args);
-        JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);
-        Job interfaceJob = ctx.getBean(INTERFACE_JOB, Job.class);
-        JobParameters jobParameters = new JobParametersBuilder()
-                .addDate("date", new Date())
-                .toJobParameters();
-
-        JobExecution jobExecution = jobLauncher.run(interfaceJob, jobParameters);
-
-        BatchStatus batchStatus = jobExecution.getStatus();
-
-        while(batchStatus.isRunning()){
-            log.info("*********** Still running.... **************");
-            Thread.sleep(1000);
-        }
-
-        log.info(String.format("*********** Exit status: %s", jobExecution.getExitStatus().getExitCode()));
-        JobInstance jobInstance = jobExecution.getJobInstance();
-        log.info(String.format("********* Name of the job %s", jobInstance.getJobName()));
-
-        log.info(String.format("*********** job instance Id: %d", jobInstance.getId()));
-
-        System.exit(0);
-
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
     }
+    
+//    public static void main(String[] args) throws BeansException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException {
+//        Log log = LogFactory.getLog(Application.class);
+//
+//        SpringApplication app = new SpringApplication(Application.class);
+//        app.setWebEnvironment(false);
+//        ConfigurableApplicationContext ctx = app.run(args);
+//        JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);
+//        Job interfaceJob = ctx.getBean(INTERFACE_JOB, Job.class);
+//        JobParameters jobParameters = new JobParametersBuilder()
+//                .addDate("date", new Date())
+//                .toJobParameters();
+//
+//        JobExecution jobExecution = jobLauncher.run(interfaceJob, jobParameters);
+//
+//        BatchStatus batchStatus = jobExecution.getStatus();
+//
+//        while(batchStatus.isRunning()){
+//            log.info("*********** Still running.... **************");
+//            Thread.sleep(1000);
+//        }
+//
+//        log.info(String.format("*********** Exit status: %s", jobExecution.getExitStatus().getExitCode()));
+//        JobInstance jobInstance = jobExecution.getJobInstance();
+//        log.info(String.format("********* Name of the job %s", jobInstance.getJobName()));
+//
+//        log.info(String.format("*********** job instance Id: %d", jobInstance.getId()));
+//
+//        System.exit(0);
+//
+//    }
 
 }

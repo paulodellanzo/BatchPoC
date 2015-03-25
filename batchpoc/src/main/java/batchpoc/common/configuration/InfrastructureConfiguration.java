@@ -40,7 +40,7 @@ public class InfrastructureConfiguration {
         Properties properties = new Properties();
 //		  properties.setProperty("hibernate.hbm2ddl.auto", "validate");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
-        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.show_sql", "false");
         properties.setProperty("hibernate.format_sql", "true");
         return properties;
     }
@@ -48,9 +48,9 @@ public class InfrastructureConfiguration {
     @Bean
     public DataSource dataSource(){
         return DataSourceBuilder.create()
-                .url("jdbc:oracle:thin:@dbdv02:1521:egdev")
+                .url("jdbc:oracle:thin:@dbdv02:1521:odea")
                 .driverClassName("oracle.jdbc.OracleDriver")
-                .username("esigas_pae")
+                .username("esigas_gaston")
                 .password("esigas")
                 .build();
     }
